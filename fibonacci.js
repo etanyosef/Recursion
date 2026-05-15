@@ -15,47 +15,24 @@ const fibs = (n) => {
 }
 
 const fibsRec = (n) => {
-    const fibonacciSequence = [];
-
-    let n1 = 0;
-    let n2 = 1;
-    let nextNum = n1 + n2;
-
-    fibonacciSequence.push(n1);
-
-    if (nextNum <= n) {
-        fibonacciSequence.push(n1);
-        n1 = n2;
-        n2 = nextNum;
-        nextNum = n1 + n2;
-        console.log(n1)
-        return fibsRec(nextNum - 1);    
+    
+    if (Number.isInteger(n) === false) {
+        return console.log('Not a number.');
     }
 
-    return fibonacciSequence;
-}
-
-const fibonacci = (n) => {
-    const fibonacciSequence = [];
-
-    if (n < 2) {
-        fibonacciSequence.push(n);
-        return fibonacciSequence;
+    if (n === 0) {
+        return [0];
     }
 
-    for (let i = 0; i < n; i++) {
-        let n1 = 0;
-        let n2 = 1;
-        let nextNum = n1 + n2;
-        n1 = n2;
-        n2 = nextNum;
-        
-        fibonacciSequence.push(nextNum);
-        fibonacci(i);
+    if (n === 2) {
+        return [0, 1];
     }
-    return fibonacciSequence;
+
+    const sequence = fibsRec(n - 1);
+    sequence.push(sequence[sequence.length - 1] + sequence[sequence.length - 2]);
+    return sequence;
+
 }
 
 console.log(fibs(8));
-// console.log(fibsRec(8));
-console.log(fibonacci(8));
+console.log(fibsRec(12));
