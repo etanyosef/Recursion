@@ -34,5 +34,21 @@ const fibsRec = (n) => {
 
 }
 
+const fibsRec2 = (n) => {
+    if (n == 1)  {
+        return [0];
+    }
+
+    if (n == 2) {
+        return [0, 1];
+    }
+
+    const sequence = fibsRec2(n - 1);
+    const sum = sequence.at(-1) + sequence.at(-2);
+    return [...sequence, sum];
+}
+
 console.log(fibs(8));
 console.log(fibsRec(12));
+console.log('Fibs Rec 2:');
+console.log(fibsRec2(8));
